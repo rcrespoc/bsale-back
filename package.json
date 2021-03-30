@@ -4,7 +4,8 @@
   "description": "BSALE prueba técnica para entrevista",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app",
+    "dev": "nodemon app",
+    "start": "node app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Richard Crespo",

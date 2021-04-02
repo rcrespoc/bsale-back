@@ -4,6 +4,7 @@
   "description": "BSALE prueba técnica para entrevista",
   "main": "index.js",
   "scripts": {
+    "deploy": "gh-pages -d docs",
     "docs": "jsdoc -c jsdoc.json",
     "dev": "nodemon app",
     "start": "node app",
@@ -12,6 +13,7 @@
   "author": "Richard Crespo",
   "license": "ISC",
   "devDependencies": {
+    "gh-pages": "^3.1.0",
     "jsdoc-http-plugin": "^0.3.2",
     "nodemon": "^2.0.7",
     "sequelize-auto": "^0.8.1"

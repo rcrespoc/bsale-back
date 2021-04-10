@@ -10,10 +10,15 @@ const { initModels } = require('../models/init-models');
 const models = initModels(sequelize);
 
 /**
- * Funcion que revisa si existe dicha categoria en la BBDD.
+ * Middleware que revisa y valida que exista la categoria solicitada en la base de datos.
  * @async
  * @function existeCategoria
  * @param {Number} id ID de categoria que se quiere buscar en la base de datos.
+ * @throws {NotFound} Si la aplicación no consigue una categoria con la ID proporcionada
+ * por el cliente, disparará un error avisándole al cliente lo que ha sucedido.
+ * @since 1.0.0
+ * @version 1.0.0
+ * @author {@link https://github.com/rcrespoc|Richard Crespo}
  */
 const existeCategoria = async(id) => {
   const existeCategoria = await models.category.findOne({where: {id}});
@@ -23,10 +28,15 @@ const existeCategoria = async(id) => {
 }
 
 /**
- * Funcion que revisa si existe dicho producto en la BBDD.
+ * Middleware que revisa y valida que exista el producto solicitado en la base de datos.
  * @async
  * @function existeProducto
- * @param {Number} id ID de producto que se quiere buscar en la base de datos.
+ * @param {Number} id ID del producto que se desea buscar en la base de datos. 
+ * @throws {NotFound} Si la aplicación no consigue el producto con la ID proporcionada
+ * por el cliente, disparará un error avisándole al cliente lo que ha sucedido.
+ * @since 1.0.0
+ * @version 1.0.0
+ * @author {@link https://github.com/rcrespoc|Richard Crespo}
  */
 const existeProducto = async(id) => {
   const existeProducto = await models.product.findOne({where: {id}});

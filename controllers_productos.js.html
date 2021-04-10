@@ -40,11 +40,30 @@ const { initModels } = require('../models/init-models');
 const models = initModels(sequelize);
 
 /**
- * Función que muestra los productos desde la base de datos limitados por los argumentos dados.
+ * Función que obtiene las productos de la BBDD.
+ * Retorna un objeto JSON que contiene dos atributos:
+ * 
+ * 
+ *  - Total: El total de elemento que contiene la base de datos en el momento de la consulta.
+ *  - Productos: Los elementos que se trajeron desde la base de datos.
+ * 
+ * 
+ * NOTA: El atributo 'Productos' NO contiene el total de elementos que almacena la 
+ * base de datos sino la productos a la que se limitó por los parámetros LIMITE y DESDE
+ * los cuales son proporcionados al momento de consumir la API desde el cliente, en el caso
+ * de que dichos argumentos no hayan sido dados por el cliente, los mismos obtendrán
+ * un valor por defecto. LIMITE = 6, DESDE = 0.
  * @async
  * @function mostrarProductos
- * @param {Object} req Request
- * @param {Object} res Response
+ * @param {Object} req Request. El objeto Request que proviene del cliente con la información
+ * que se desea procesar.
+ * @param {Object} res Response. El objeto Response que será enviado como respuesta al cliente
+ * con la información solicitada.
+ * @throws {InternalServerError} Si la aplicación no logra realizar la consulta a la
+ * base de datos, va a disparar el error avisandole al cliente con su respectivo código 500.
+ * @since 1.0.0
+ * @version 1.0.0
+ * @author {@link https://github.com/rcrespoc|Richard Crespo}
  */
 const mostrarProductos = async(req = request, res = response) => {
   const {limite = 6, desde = 0} = req.query;
@@ -66,11 +85,20 @@ const mostrarProductos = async(req = request, res = response) => {
 }
 
 /**
- * Función que muestra el producto desde la base de datos según la ID dada por el cliente.
+ * Función que retorna el producto que ha sido solicitado desde el cliente.
+ * 
+ * NOTA: Los productos son buscados mediante la ID.
  * @async
  * @function mostrarProducto
- * @param {Object} req Request
- * @param {Object} res Response
+ * @param {Object} req Request. El objeto Request que proviene del cliente con la información
+ * que se desea procesar.
+ * @param {Object} res Response. El objeto Response que será enviado como respuesta al cliente
+ * con la información solicitada.
+ * @throws {InternalServerError} Si la aplicación no logra realizar la consulta a la
+ * base de datos, va a disparar el error avisandole al cliente con su respectivo código 500.
+ * @since 1.0.0
+ * @version 1.0.0
+ * @author {@link https://github.com/rcrespoc|Richard Crespo}
  */
 const mostrarProducto = async(req = request, res = response) => {
   const { id } = req.params;
@@ -89,11 +117,32 @@ const mostrarProducto = async(req = request, res = response) => {
 }
 
 /**
- * Función que muestra los productos desde la base de datos limitados por los argumentos dados y filtrados por categoria.
+ * Función que obtiene las productos de la BBDD.
+ * Retorna un objeto JSON que contiene dos atributos:
+ * 
+ * 
+ *  - Total: El total de elemento que contiene la base de datos en el momento de la consulta.
+ *  - Productos: Los elementos que se trajeron desde la base de datos.
+ * 
+ * 
+ * NOTA: El atributo 'Productos' NO contiene el total de elementos que almacena la 
+ * base de datos sino la productos a la que se limitó por los parámetros LIMITE y DESDE
+ * los cuales son proporcionados al momento de consumir la API desde el cliente, en el caso
+ * de que dichos argumentos no hayan sido dados por el cliente, los mismos obtendrán
+ * un valor por defecto. LIMITE = 6, DESDE = 0.
+ * 
  * @async
+ * @method
  * @function mostrarProductoPorCategoria
- * @param {Object} req Request
- * @param {Object} res Response
+ * @param {Object} req Request. El objeto Request que proviene del cliente con la información
+ * que se desea procesar.
+ * @param {Object} res Response. El objeto Response que será enviado como respuesta al cliente
+ * con la información solicitada.
+ * @throws {InternalServerError} Si la aplicación no logra realizar la consulta a la
+ * base de datos, va a disparar el error avisandole al cliente con su respectivo código 500.
+ * @since 1.0.0
+ * @version 1.0.0
+ * @author {@link https://github.com/rcrespoc|Richard Crespo}
  */
 const mostrarProductoPorCategoria = async(req = request, res = response) => {
   const {limite = 6, desde = 0} = req.query;
@@ -116,11 +165,31 @@ const mostrarProductoPorCategoria = async(req = request, res = response) => {
 }
 
 /**
- * Función que muestra los productos por nombre desde la base de datos limitados por los argumentos dados.
+ * Función que obtiene las productos de la BBDD.
+ * Retorna un objeto JSON que contiene dos atributos:
+ * 
+ * 
+ *  - Total: El total de elemento que contiene la base de datos en el momento de la consulta.
+ *  - Productos: Los elementos que se trajeron desde la base de datos.
+ * 
+ * 
+ * NOTA: El atributo 'Productos' NO contiene el total de elementos que almacena la 
+ * base de datos sino la productos a la que se limitó por los parámetros LIMITE y DESDE
+ * los cuales son proporcionados al momento de consumir la API desde el cliente, en el caso
+ * de que dichos argumentos no hayan sido dados por el cliente, los mismos obtendrán
+ * un valor por defecto. LIMITE = 6, DESDE = 0.
+ * 
  * @async
  * @function mostrarProductosPorNombre
- * @param {Object} req Request
- * @param {Object} res Response
+ * @param {Object} req Request. El objeto Request que proviene del cliente con la información
+ * que se desea procesar.
+ * @param {Object} res Response. El objeto Response que será enviado como respuesta al cliente
+ * con la información solicitada.
+ * @throws {InternalServerError} Si la aplicación no logra realizar la consulta a la
+ * base de datos, va a disparar el error avisandole al cliente con su respectivo código 500.
+ * @since 1.0.0
+ * @version 1.0.0
+ * @author {@link https://github.com/rcrespoc|Richard Crespo}
  */
 const mostrarProductosPorNombre = async (req = request, res = response) => {
   const {limite = 6, desde = 0} = req.query;
@@ -166,7 +235,7 @@ module.exports = {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Fri Apr 02 2021 16:59:54 GMT-0500 (hora estándar de Perú)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Fri Apr 09 2021 23:21:48 GMT-0500 (hora estándar de Perú)
 </footer>
 
 <script> prettyPrint(); </script>
